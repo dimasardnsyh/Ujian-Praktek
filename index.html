@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <script>
+        var kg = 5000;
+        var km = 10000;
+
+        var welcome = confirm("Selamat Datang di DimsCargo. Jika anda ingin mengirim barang klik OK!");
+
+        if (welcome == true) {
+            var namaPengirim = prompt("Masukkan nama pengirim");
+            var namaPenerima = prompt("Masukkan nama Penerima");
+            var jarak = prompt("Tentukan perkiraan jarak (Masukkan hanya angka)");
+            var alamat = prompt("Masukkan alamat penerima");
+            var barang = prompt("Masukkan nama barang");
+            var berat = prompt("Tentukan berat barang (Masukkan hanya angka)");
+
+            var jarakInt = parseInt(jarak);
+            var beratInt = parseInt(berat);
+            var ongkir = jarakInt * km;
+            var beratOngkir = beratInt * kg;
+
+            var ongkirDiskon = ongkir * 0.1;
+            var beratDiskon = beratOngkir * 0.05;
+
+            var harga
+            var hargaDiskon
+            var diskonOngkir
+            var diskonBerat
+
+            if (ongkir > 50000 && beratOngkir < 100000) {
+                diskonOngkir = (ongkir - (ongkirDiskon));
+                harga = diskonOngkir + beratOngkir
+
+            } else if (ongkir > 50000 && beratOngkir > 100000) {
+                diskonOngkir = (ongkir - (ongkirDiskon));
+                diskonBerat = (beratOngkir - (beratDiskon));
+
+                harga = diskonOngkir + diskonBerat
+
+            } else if (ongkir < 50000 && beratOngkir > 100000) {
+                diskonBerat = (beratOngkir - (beratDiskon));
+                harga = ongkir + diskonBerat
+
+            } else if (ongkir < 50000 && beratOngkir < 100000) {
+                harga = ongkir + beratOngkir
+            }
+
+            if (diskonOngkir == null) {
+                ongkirDiskon = 0
+            } else if (diskonBerat == null) {
+                beratDiskon = 0
+            }
+
+            document.write(`Nama Pengirim : ${namaPengirim}<br>`);
+            document.write(`Nama Penerima : ${namaPenerima}<br>`);
+            document.write(`Alamat Penerima : ${alamat}<br>`);
+            document.write(`Jenis Barang : ${barang}<br>`);
+            document.write(`Jarak Pengiriman : ${jarak}<br>`);
+            document.write(`Berat Barang : ${berat}<br><br>`);
+
+            document.write(`Harga Ongkos Kirim : ${ongkir}<br>`);
+            document.write(`Harga Berat Barang : ${beratOngkir}<br><br>`);
+            document.write(`Diskon Ongkir : ${ongkirDiskon}<br>`);
+            document.write(`Diskon Berat Barang : ${beratDiskon}<br>`);
+
+            document.write(`Total Harga : ${harga}<br>`);
+
+        } else {
+            alert("Selamat Datang Kembali");
+        }
+    </script>
+</body>
+
+</html>
